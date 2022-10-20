@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-2">
+    <!-- Ubah Nama -->
+    <h1 class="text-4xl">Hello World</h1>
+    <button onclick="ubahNama()" class="bg-red-300 p-2">Ubah Nama</button>
+    <div id="app" class="mt-10 text-3xl"></div>
+    <h4 class="inline-block mt-10 text-3xl">Bilangan Bulat: <span id="angka"></span></h4>
+    <h4 id="kotak" class="text-4xl mt-10 h-60 w-60 bg-red-300">Saya kotak kosong</h4>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      function ubahNama() {
+        document.querySelector("h1").innerHTML = "Hi Bambang";
+      }
+
+      function MyButton(props) {
+        return (
+          <button className="m-2 p-2 bg-slate-300 rounded-3xl" onClick={props.ketikadiKlik}>
+            {props.title}
+          </button>
+        );
+      }
+      function kotakberwarna() {
+        return <div className="h-60 w-60 bg-red-300">Test</div>;
+      }
+      function Kotak() {
+        return (
+          <div>
+            <kotakberwarna />
+          </div>
+        );
+      }
+
+      function App() {
+        const [nama, setNama] = React.useState("0 adalah Bilangan Netral");
+
+        return (
+          <div>
+            <h3>Hello Saya {nama}</h3>
+
+            <button className=" p-3 bg-slate-300 rounded-full mr-3" onClick={() => setNama("1 adalah Bilangan Ganjil")}>
+              Bilangan Ganjil
+            </button>
+
+            <button className=" p-3 bg-slate-300 rounded-full" onClick={() => setNama("2 adalah Bilangan Genap")}>
+              Bilangan Genap
+            </button>
+          </div>
+        );
+      }
+      function Angka() {
+        const [angka, setNumber] = React.useState(0);
+        return (
+          <div>
+            <span>{angka}</span>
+            <br />
+            <MyButton title="Kurangi Angka" ketikadiKlik={() => setNumber(angka - 1)} />
+            <MyButton title="Tambah Angka" ketikadiKlik={() => setNumber(angka + 1)} />
+          </div>
+        );
+      }
+
+      const domContainer = document.querySelector("#app");
+      const root = ReactDOM.createRoot(domContainer);
+      const element = React.createElement(App);
+      root.render(element);
+
+      const domContainer2 = document.querySelector("#angka");
+      const root2 = ReactDOM.createRoot(domContainer2);
+      const element2 = React.createElement(Angka);
+      root2.render(element2);
+
+      const domContainer3 = document.querySelector("#kotak");
+      const root3 = ReactDOM.createRoot(domContainer3);
+      const element3 = React.createElement(Kotak);
+      root3.render(element3);
+    </script>
+  </body>
+</html>
