@@ -10,7 +10,6 @@
     <button onclick="ubahNama()" class="bg-red-300 p-2">Ubah Nama</button>
     <div id="app" class="mt-10 text-3xl"></div>
     <h4 class="inline-block mt-10 text-3xl">Bilangan Bulat: <span id="angka"></span></h4>
-    <h4 id="kotak" class="text-4xl mt-10 h-60 w-60 bg-red-300">Saya kotak kosong</h4>
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -28,15 +27,9 @@
           </button>
         );
       }
-      function kotakberwarna() {
-        return <div className="h-60 w-60 bg-red-300">Test</div>;
-      }
-      function Kotak() {
-        return (
-          <div>
-            <kotakberwarna />
-          </div>
-        );
+
+      function Tombol(props) {
+        return <button className="m-3 p-3 bg-red-300 rounded-3xl">{props.title}</button>;
       }
 
       function App() {
@@ -64,6 +57,8 @@
             <br />
             <MyButton title="Kurangi Angka" ketikadiKlik={() => setNumber(angka - 1)} />
             <MyButton title="Tambah Angka" ketikadiKlik={() => setNumber(angka + 1)} />
+            <br />
+            <Tombol title="tombol biasa" />
           </div>
         );
       }
@@ -77,11 +72,6 @@
       const root2 = ReactDOM.createRoot(domContainer2);
       const element2 = React.createElement(Angka);
       root2.render(element2);
-
-      const domContainer3 = document.querySelector("#kotak");
-      const root3 = ReactDOM.createRoot(domContainer3);
-      const element3 = React.createElement(Kotak);
-      root3.render(element3);
     </script>
   </body>
 </html>
